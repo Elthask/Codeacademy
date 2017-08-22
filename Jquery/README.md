@@ -1,1 +1,1 @@
-# Codeacademy
+# Jquery Exercises
