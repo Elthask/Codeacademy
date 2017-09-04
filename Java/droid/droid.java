@@ -13,7 +13,7 @@ public class Droid {
   
   public void chargeBattery(int hours) {
     
-    batteryLevel = batteryLevel + hours;
+    batteryLevel = batteryLevel + (hours * 5);
     
     if(batteryLevel >= 100){
       System.out.println("Battery Level = " + batteryLevel + " Droid is charged.");
@@ -46,7 +46,7 @@ public class Droid {
   public static void main (String [] args) {
     Droid myDroid = new Droid();
     myDroid.activate();
-    myDroid.chargeBattery(0);
+    myDroid.chargeBattery(1);
     myDroid.hover(20);
   }
 }
