@@ -1,46 +1,55 @@
-let allEvents;
-let event;
-const eventTrainingTimes = {'Marathon': 50, 'Triathlon': 100, 'Decathlon': 200 };
+//global scopes
 
+const getAllEvents = () => {
+  return ['Marathon', 'Triathlon', 'Decathlon'];
+}
 /* this is used a few places and it is vulnerable */ 
 
 const getRandomEvent = () => {
-  allEvents = ['Marathon', 'Triathlon', 'Decathlon'];
-  event = allEvents[Math.floor(Math.random() * allEvents.length)];
+  const allEvents = getAllEvents();
+  
+  const event = allEvents[Math.floor(Math.random() * allEvents.length)];
 };
 
-
-const getEventActivities = () => {
-  allEvents = ['Marathon', 'Triathlon', 'Decathlon'];
+const getEventActivities = event => {
+  const allEvents = getAllEvents();
 
   if (!allEvents.includes(event)) {
     return null; 
   }
   
+  let activities;
   if (event === 'Marathon') {
-    const activities = ['Running'];
-    return activities.join(', '); 
+	activities = ['Running'];
+
   } 
   if (event === 'Triathlon') {
-    const activities = ['Running', 'Cycling', 'Swimming'];
-    return activities.join(', '); 
+	activities = ['Running', 'Cycling', 'Swimming'];
+
   } 
   if (event === 'Decathlon') {
-    const activities = ['Running', 'Hurdles', 'Javelin throw', 'Discus Throw', 'Shot put', 'High Jump'];
-    return activities.join(', '); 
+  activities = ['Running', 'Hurdles', 'Javelin throw', 'Discus Throw', 'Shot put', 'High Jump'];
+
   }
   
 };
 
-const getDaysToTrain = () => {
-  allEvents = ['Marathon', 'Triathlon', 'Decathlon'];
+const getDaysToTrain = event => {
+  
+  const allEvents = getAllEvents();
+  
   if (!allEvents.includes(event)) {
     return null; 
   }
-  
+  const eventTrainingTimes = {'Marathon': 50, 'Triathlon': 100, 'Decathlon': 200 };
   return eventTrainingTimes[event];
 };
 
+const getEventMessage = () => {
+  const myEvent = getRandomEvent();
+  
+  console.log('Your event is a ' + myEvent + '. Your event activities consist of ' + getEventActivities() + '. You have ' + getDaysToTrain() +  ' days to train.');
+}
 
 getRandomEvent();
-console.log('Your event is a ' + event + '. Your event activities consist of ' + getEventActivities() + '. You have ' + getDaysToTrain() +  ' days to train.');
+getEventMessage();
